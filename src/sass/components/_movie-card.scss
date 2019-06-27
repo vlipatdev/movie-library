@@ -1,0 +1,34 @@
+.movie {
+    height: 25rem;
+    width: 14rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-size: 1.4rem;
+
+    &:not(:last-child) {
+        margin-right: 2rem;
+    }
+
+    &__container {
+        @include flex-left;
+        overflow-x: scroll;
+        scrollbar-width: none;
+
+        &:hover {
+            cursor: grab;
+        }
+
+        &::-webkit-scrollbar {
+            appearance: none;
+        }
+    }
+
+    &__poster {
+        width: 100%;
+        height: auto;
+    }
+
+    &__title {
+        text-align: center;
+    }
+}

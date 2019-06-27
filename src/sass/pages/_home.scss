@@ -1,0 +1,26 @@
+.search {
+    @include flex-center-col;
+    min-height: 30rem;
+
+    &__container {
+        @include flex-left;
+        height: 4rem;
+    }
+
+    &__input {
+        border: none;
+        height: 100%;
+        width: 75vw;
+    }
+
+    &__button {
+        background: $color-primary;
+        height: 100%;
+        width: 4rem;
+    }
+
+    &__icon {
+        height: 2.5rem;
+        width: 2.5rem;
+    }
+}

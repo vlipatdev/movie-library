@@ -6,7 +6,9 @@
   "scripts": {
     "build": "webpack --mode development",
     "build:prod": "webpack --mode production",
-    "watch": "webpack-dev-server --mode development --open"
+    "watch": "webpack-dev-server --mode development --open",
+    "start": "node server.js",
+    "heroku-postbuild": "webpack --mode production"
   },
   "author": "Val Lipat",
   "license": "MIT",
@@ -17,6 +19,7 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
     "cssnano": "^4.1.10",
+    "dragscroll": "0.0.8",
     "file-loader": "^4.0.0",
     "mini-css-extract-plugin": "^0.7.0",
     "postcss-loader": "^3.0.0",
@@ -25,5 +28,8 @@
     "webpack": "^4.35.0",
     "webpack-cli": "^3.3.4",
     "webpack-dev-server": "^3.7.2"
+  },
+  "dependencies": {
+    "axios": "^0.19.0"
   }
 }

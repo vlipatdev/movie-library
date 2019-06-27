@@ -1,3 +1,5 @@
-import '../sass/main.scss';
+import key from './config';
+import axios from 'axios';
+import dragscroll from 'dragscroll'
 
-alert('script connected');
+import '../sass/main.scss';
