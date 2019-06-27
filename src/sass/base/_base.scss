@@ -1,0 +1,26 @@
+html {
+    min-height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+    @include flex-center-column;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    transition: all .2s;
+}
+
+body {
+    height: 100%;
+    @include flex-center-column;
+}
+
+// ::selection {
+//     background: ;
+//     color: ;
+// }

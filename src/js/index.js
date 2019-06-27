@@ -1,3 +1,3 @@
-import '../sass/styles.scss';
+import '../sass/main.scss';
 
 alert('script connected');
