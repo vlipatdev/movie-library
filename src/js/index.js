@@ -1,4 +1,3 @@
-import key from './config';
 import axios from 'axios';
 import dragscroll from 'dragscroll'
 
