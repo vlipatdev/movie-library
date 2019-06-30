@@ -13,33 +13,32 @@ html {
     box-sizing: border-box;
     font-size: 62.5%;
     @include flex-center-col;
-    background: #000;
 }
 
 body {
-    height: 100%;
+    background: $color-grey-dark-2;
+    min-height: 100vh;
     width: 100%;
-    @include flex-center-col;
+    @include flex-start;
     color: $color-white-1;
-}
-
-main {
-    height: 100%;
-    width: 100%;
-    padding: 0 5%;
-}
-
-section {
-    margin-bottom: 4rem;
 }
 
 a, a:link, a:active, a:visited {
     color: #fff;
+    text-decoration: none;
 }
 
-h2 {
-    font-size: $font-size-lg;
-    margin-bottom: 1rem;
+::-webkit-scrollbar {
+    width: 8px;
+
+    &-track {
+        background: $color-grey-dark-1;
+    }
+
+    &-thumb {
+        background: $color-grey-dark-3;
+        border-radius: 1000px;
+    }
 }
 
 // ::selection {

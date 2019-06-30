@@ -19,159 +19,53 @@
     <header>
         <h1></h1>
     </header>
-
+    <div class="nav-container">
+        <nav>
+            <div class="search">
+                <input type="text" class="search__input" placeholder="Search for a movie">
+                <img src="img/search.svg" alt="search logo" class="search__icon">
+            </div>
+            <p>Saved (0)</p>
+            <p>Categories</p>
+            <ul>
+                <li data-id="28">Action</li>
+                <li data-id="12">Adventure</li>
+                <li data-id="16">Animation</li>
+                <li data-id="35">Comedy</li>
+                <li data-id="80">Crime</li>
+                <li data-id="99">Documentary</li>
+                <li data-id="18">Drama</li>
+                <li data-id="10751">Family</li>
+                <li data-id="14">Fantasy</li>
+                <li data-id="36">History</li>
+                <li data-id="27">Horror</li>
+                <li data-id="10402">Music</li>
+                <li data-id="9648">Mystery</li>
+                <li data-id="10749">Romance</li>
+                <li data-id="878">Science Fiction</li>
+                <li data-id="10770">TV Movie</li>
+                <li data-id="53">Thriller</li>
+                <li data-id="10752">War</li>
+                <li data-id="37">Western</li>
+            </ul>
+            <a class="tmdb__link" href="https://www.themoviedb.org/">
+                <img class="tmdb__logo" src="img/tmdb-logo.svg" alt="tmdb-logo">
+            </a>
+            <p class="tmdb__text">This product uses the TMDb API but is not endorsed or certified by TMDb.</p>
+        </nav>
+    </div>
     <main>
-        <section class="search u-margin-bottom-xl">
-            <h2 class="search__heading">Search for movies</h2>
-            <div class="search__container u-box-shadow-sm">
-                <input placeholder="Avengers" class="search__input u-padding-sm" type="text">
-                <button class="button search__button">
-                    <img class="search__icon" src="./img/search.svg">
-                </button>
-            </div>
-        </section>
-        <section class="trending">
-            <h2 class="trending__heading">Trending</h2>
-            <div class="movie__container dragscroll">
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-            </div>
-        </section>
-        <section class="discover">
-            <h2 class="discover__heading">Discover</h2>
-            <div class="movie__container dragscroll">
-                <article onclick="toggle()" class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-                <article class="movie">
-                    <img class="movie__poster" src="https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg">
-                    <p class="movie__title">Captain Marvel</p>
-                </article>
-            </div>
-        </section>
+        <h2>Trending</h2>
+        <div class="movie__container"></div>
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
     </main>
 
-    <footer>
-        <!-- Made by <a href="https://github.com/vlipatdev">Val Lipat</a>. -->
-    </footer>
+    <!-- <footer>
+        Made by <a href="https://github.com/vlipatdev">Val Lipat</a>.
+    </footer> -->
 </body>
 </html>

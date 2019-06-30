@@ -11,9 +11,19 @@
     align-items: center;
 }
 
+@mixin flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
 @mixin flex-left {
     display: flex;
     justify-content: flex-start;
+}
+
+@mixin flex-start {
+    display: flex;
+    align-items: flex-start;
 }
 
 @mixin absolute-center {

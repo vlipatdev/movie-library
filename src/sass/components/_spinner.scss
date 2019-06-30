@@ -1,0 +1,21 @@
+.spinner {
+    margin: 2rem auto 0;
+    width: 7rem;
+
+    div {
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: white;
+        border-radius: 100%;
+        display: inline-block;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+
+    .bounce1 {
+        animation-delay: -0.32s;
+    }
+
+    .bounce2 {
+        animation-delay: -0.16s;
+    }
+}
