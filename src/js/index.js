@@ -9,6 +9,7 @@ const heading = document.querySelector('.heading');
 const trendSelect = document.querySelector('.trend-select');
 const discoverLabel = document.querySelector('.discover-label');
 const discoverSelect = document.querySelector('.discover-select');
+const searchInput = document.querySelector('.search__input');
 
 // set current page
 let curPage = 1;
@@ -16,6 +17,7 @@ let curPage = 1;
 // set urls
 let trendUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=${key}&page=${curPage}`;
 let discoverUrl;
+let searchUrl;
 
 // axios function
 const axiosFn = (url) => {
@@ -39,21 +41,21 @@ const axiosFn = (url) => {
         .catch(error => alert(error));
 };
 
-// call axios onload
+// render movies onload
 axiosFn(trendUrl);
 
-// clear movies
+// clear movies function
 const clearMovies = () => {
     movieContainer.innerHTML = '';
+    spinner.style.display = 'block';
+    curPage = 1;
 };
 
 let trendValue = 'day';
 // update trending on select change
 trendSelect.addEventListener('change', (e) => {
-    spinner.style.display = 'block';
-    trendValue = e.target.value;
-    curPage = 1;
     clearMovies();
+    trendValue = e.target.value;
     trendUrl = `https://api.themoviedb.org/3/trending/movie/${trendValue}?api_key=${key}&page=${curPage}`;
     axiosFn(trendUrl);
     return trendValue;
@@ -63,10 +65,8 @@ let genreId;
 let discoverValue = 'popularity.desc';
 // update discover on select change;
 discoverSelect.addEventListener('change', (e) => {
-    spinner.style.display = 'block';
-    discoverValue = e.target.value;
-    curPage = 1;
     clearMovies();
+    discoverValue = e.target.value;
     discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&page=${curPage}&with_genres=${genreId}&sort_by=${discoverValue}&vote_count.gte=500`;
     axiosFn(discoverUrl);
     return discoverValue;
@@ -77,32 +77,50 @@ let isDiscover;
 let prevEl = genreList[0];
 genreList.forEach((genre) => {
     genre.addEventListener('click', (e) => {
-        spinner.style.display = 'block';
+        clearMovies();
         trendSelect.style.display = 'none';
         discoverLabel.style.display = 'block';
         discoverSelect.value = 'popularity.desc';
         prevEl.classList.remove('selected');
         e.target.classList.add('selected');
-        clearMovies();
         heading.textContent = e.target.textContent;
-        curPage = 1;
         genreId = e.target.dataset.id;
         discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&page=${curPage}&with_genres=${genreId}&sort_by=popularity.desc&vote_count.gte=500`;
         axiosFn(discoverUrl);
+        isSearch = false;
         isDiscover = true;
         prevEl = e.target;
     });
 });
 
+let isSearch;
+let searchValue;
+searchInput.addEventListener('keydown', (e) => {
+    if (e.keyCode === 13) {
+        heading.textContent = `Results for "${e.target.value}"`;
+        trendSelect.style.display = 'none';
+        discoverLabel.style.display = 'none';
+        clearMovies();
+        searchValue = e.target.value;
+        searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${key}&page=${curPage}&query=${searchValue}&vote_count.gte=500`;
+        axiosFn(searchUrl);
+        isDiscover = false;
+        isSearch = true;
+    }
+});
+
 // load new page when user scrolls to bottom
 const loadNextPage = () => {
     curPage += 1;
-    if (!isDiscover) {
-        trendUrl = `https://api.themoviedb.org/3/trending/movie/${trendValue}?api_key=${key}&page=${curPage}`;
-        axiosFn(trendUrl);
-    } else {
+    if (isDiscover) {
         discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&page=${curPage}&with_genres=${genreId}&sort_by=${discoverValue}&vote_count.gte=500`;
         axiosFn(discoverUrl);
+    } else if (isSearch) {
+        searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${key}&page=${curPage}&query=${searchValue}&vote_count.gte=500`;
+        axiosFn(searchUrl);
+    } else {
+        trendUrl = `https://api.themoviedb.org/3/trending/movie/${trendValue}?api_key=${key}&page=${curPage}`;
+        axiosFn(trendUrl);
     }
 };
 
