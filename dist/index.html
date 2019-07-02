@@ -7,74 +7,85 @@
     <meta name="author" content="Val Lipat">
     <meta name="description" content="">
     <meta name="theme-color" content="">
-    <title></title>
+    <title>Movie Browser</title>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link href="../src/img/favicon.ico" rel="icon" type="image/x-icon"/>
     <link rel="stylesheet" href="./bundle.css">
     <script src="./bundle.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1></h1>
-    </header>
-    <div class="nav-container">
-        <nav>
+    <div class="nav__container">
+        <nav class="nav">
+            <img class="nav__logo" src="img/box.svg">
+            <p class="nav__heading">movie browser</p>
             <div class="search">
                 <input type="text" class="search__input" placeholder="Search for a movie">
                 <img src="img/search.svg" alt="search logo" class="search__icon">
             </div>
-            <p>Favorites</p>
-            <p>Trending</p>
-            <p>Genres</p>
-            <ul>
-                <li class="genre" data-id="28">Action</li>
-                <li class="genre" data-id="12">Adventure</li>
-                <li class="genre" data-id="16">Animation</li>
-                <li class="genre" data-id="35">Comedy</li>
-                <li class="genre" data-id="80">Crime</li>
-                <li class="genre" data-id="18">Drama</li>
-                <li class="genre" data-id="10751">Family</li>
-                <li class="genre" data-id="14">Fantasy</li>
-                <li class="genre" data-id="27">Horror</li>
-                <li class="genre" data-id="10402">Music</li>
-                <li class="genre" data-id="9648">Mystery</li>
-                <li class="genre" data-id="10749">Romance</li>
-                <li class="genre" data-id="878">Science Fiction</li>
-                <li class="genre" data-id="53">Thriller</li>
-                <li class="genre" data-id="10752">War</li>
+            <p class="nav__text nav__text--favorites">Favorites <img class="nav__icon" src="img/star.svg"></p>
+            <p class="nav__text nav__text--trending">Trending <img class="nav__icon" src="img/trending-up.svg"></p>
+            <p class="nav__text nav__text--genres">Genres <img class="nav__icon nav__icon--chevron" src="img/chevron-down.svg"></p>
+            <ul class="nav__list">
+                <li class="nav__list-item" data-id="28|12|16|35|80|99|18|10751|14|36|27|10402|9648|10749|878|10770|53|10752">All</li>
+                <li class="nav__list-item" data-id="28">Action</li>
+                <li class="nav__list-item" data-id="12">Adventure</li>
+                <li class="nav__list-item" data-id="16">Animation</li>
+                <li class="nav__list-item" data-id="35">Comedy</li>
+                <li class="nav__list-item" data-id="80">Crime</li>
+                <li class="nav__list-item" data-id="18">Drama</li>
+                <li class="nav__list-item" data-id="10751">Family</li>
+                <li class="nav__list-item" data-id="14">Fantasy</li>
+                <li class="nav__list-item" data-id="27">Horror</li>
+                <li class="nav__list-item" data-id="10402">Music</li>
+                <li class="nav__list-item" data-id="9648">Mystery</li>
+                <li class="nav__list-item" data-id="10749">Romance</li>
+                <li class="nav__list-item" data-id="878">Science Fiction</li>
+                <li class="nav__list-item" data-id="53">Thriller</li>
+                <li class="nav__list-item" data-id="10752">War</li>
             </ul>
-            <a class="tmdb__link" href="https://www.themoviedb.org/">
+            <p class="nav__text nav__text--about">About</p>
+            <a class="nav__link" href="https://github.com/vlipatdev">
+                <img class="nav__icon--github" src="img/github.svg">
+            </a>
+            <!-- <a class="tmdb__link" href="https://www.themoviedb.org/">
                 <img class="tmdb__logo" src="img/tmdb-logo.svg" alt="tmdb-logo">
             </a>
-            <p class="tmdb__text">This app uses the TMDb API but is not endorsed or certified by TMDb.</p>
+            <p class="tmdb__text">This app uses the TMDb API but is not endorsed or certified by TMDb.</p> -->
         </nav>
     </div>
     <main>
         <h2 class="heading">Trending</h2>
-        <label class="discover-label">Sort by
-            <select class="discover-select">
+        <label class="label label__discover">Sort by
+            <select class="select select__discover">
                 <option value="popularity.desc">Popularity</option>
                 <option value="release_date.desc">Year</option>
                 <option value="original_title.asc">Title</option>
                 <option value="vote_average.desc">Rating</option>
             </select>
         </label>
-        <select class="trend-select">
-            <option value="day">Today</option>
-            <option value="week">This Week</option>
+        <select class="select select__trend">
+            <option value="day">Day</option>
+            <option value="week">Week</option>
         </select>
-        <div class="movie__container"></div>
+        <div class="movie__container">
+            <i class="filler filler-anchor" aria-hidden="true"></i>
+            <i class="filler" aria-hidden="true"></i>
+            <i class="filler" aria-hidden="true"></i>
+            <i class="filler" aria-hidden="true"></i>
+            <i class="filler" aria-hidden="true"></i>
+            <i class="filler" aria-hidden="true"></i>
+            <i class="filler" aria-hidden="true"></i>
+            <i class="filler" aria-hidden="true"></i>
+            <i class="filler" aria-hidden="true"></i>
+            <i class="filler" aria-hidden="true"></i>
+        </div>
         <div class="spinner">
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
+            <div class="spinner__circle spinner__circle--1"></div>
+            <div class="spinner__circle spinner__circle--2"></div>
+            <div class="spinner__circle spinner__circle--3"></div>
         </div>
     </main>
-
-    <!-- <footer>
-        Made by <a href="https://github.com/vlipatdev">Val Lipat</a>.
-    </footer> -->
 </body>
 </html>

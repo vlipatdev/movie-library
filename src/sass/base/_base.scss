@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: inherit;
     transition: all .2s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 html {
@@ -17,14 +20,16 @@ html {
 
 body {
     background: $color-grey-dark-2;
+    background: #232526;
+    background: linear-gradient(to right, #414345, #232526);
     min-height: 100vh;
     width: 100%;
     @include flex-start;
-    color: $color-white-1;
+    color: $color-white;
 }
 
 a, a:link, a:active, a:visited {
-    color: #fff;
+    color: $color-white;
     text-decoration: none;
 }
 
@@ -40,8 +45,3 @@ a, a:link, a:active, a:visited {
         border-radius: 1000px;
     }
 }
-
-// ::selection {
-//     background: $color-primary;
-//     color: #fff;
-// }

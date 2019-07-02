@@ -1,10 +1,11 @@
 .movie {
     width: 16rem;
-    min-width: 14rem;
+    min-width: 16rem;
     margin: 1rem;
     background: $color-grey-dark-1;
     border-radius: 1rem;
     overflow: hidden;
+    position: relative;
 
     &:hover {
         transform: scale(1.05);
