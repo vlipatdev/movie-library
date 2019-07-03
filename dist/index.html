@@ -7,7 +7,7 @@
     <meta name="author" content="Val Lipat">
     <meta name="description" content="">
     <meta name="theme-color" content="">
-    <title>Movie Browser</title>
+    <title>Movie Library</title>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
@@ -18,13 +18,13 @@
 <body>
     <div class="nav__container">
         <nav class="nav">
-            <img class="nav__logo" src="img/box.svg">
-            <p class="nav__heading">movie browser</p>
+            <img class="nav__logo" src="img/film.svg">
+            <p class="nav__heading">movie library</p>
             <div class="search">
                 <input type="text" class="search__input" placeholder="Search for a movie">
                 <img src="img/search.svg" alt="search logo" class="search__icon">
             </div>
-            <p class="nav__text nav__text--favorites">Favorites <img class="nav__icon" src="img/star.svg"></p>
+            <p class="nav__text nav__text--favorites">My Favorites <img class="nav__icon" src="img/heart.svg"></p>
             <p class="nav__text nav__text--trending">Trending <img class="nav__icon" src="img/trending-up.svg"></p>
             <p class="nav__text nav__text--genres">Genres <img class="nav__icon nav__icon--chevron" src="img/chevron-down.svg"></p>
             <ul class="nav__list">
@@ -36,6 +36,7 @@
                 <li class="nav__list-item" data-id="80">Crime</li>
                 <li class="nav__list-item" data-id="18">Drama</li>
                 <li class="nav__list-item" data-id="10751">Family</li>
+                <li class="nav__list-item" data-id="36">History</li>
                 <li class="nav__list-item" data-id="14">Fantasy</li>
                 <li class="nav__list-item" data-id="27">Horror</li>
                 <li class="nav__list-item" data-id="10402">Music</li>
@@ -44,6 +45,7 @@
                 <li class="nav__list-item" data-id="878">Science Fiction</li>
                 <li class="nav__list-item" data-id="53">Thriller</li>
                 <li class="nav__list-item" data-id="10752">War</li>
+                <li class="nav__list-item" data-id="37">Western</li>
             </ul>
             <p class="nav__text nav__text--about">About</p>
             <a class="nav__link" href="https://github.com/vlipatdev">
@@ -70,22 +72,23 @@
             <option value="week">Week</option>
         </select>
         <div class="movie__container">
-            <i class="filler filler-anchor" aria-hidden="true"></i>
-            <i class="filler" aria-hidden="true"></i>
-            <i class="filler" aria-hidden="true"></i>
-            <i class="filler" aria-hidden="true"></i>
-            <i class="filler" aria-hidden="true"></i>
-            <i class="filler" aria-hidden="true"></i>
-            <i class="filler" aria-hidden="true"></i>
-            <i class="filler" aria-hidden="true"></i>
-            <i class="filler" aria-hidden="true"></i>
-            <i class="filler" aria-hidden="true"></i>
+            <i class="movie__filler movie__filler-anchor" aria-hidden="true"></i>
+            <i class="movie__filler" aria-hidden="true"></i>
+            <i class="movie__filler" aria-hidden="true"></i>
+            <i class="movie__filler" aria-hidden="true"></i>
+            <i class="movie__filler" aria-hidden="true"></i>
+            <i class="movie__filler" aria-hidden="true"></i>
+            <i class="movie__filler" aria-hidden="true"></i>
+            <i class="movie__filler" aria-hidden="true"></i>
+            <i class="movie__filler" aria-hidden="true"></i>
+            <i class="movie__filler" aria-hidden="true"></i>
         </div>
         <div class="spinner">
             <div class="spinner__circle spinner__circle--1"></div>
             <div class="spinner__circle spinner__circle--2"></div>
             <div class="spinner__circle spinner__circle--3"></div>
         </div>
-    </main>
+        <div class="movie-info"></div>
+    </div>
 </body>
 </html>

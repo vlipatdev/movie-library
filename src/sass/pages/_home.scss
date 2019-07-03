@@ -1,32 +1,3 @@
-main {
-    flex-grow: 1;
-    color: $color-white;
-    @include flex-col;
-    align-items: center;
-    padding: 5rem 5rem 1rem 5rem;
-
-    .heading {
-        margin-bottom: 1rem;
-        text-align: center;
-    }
-
-    .label {
-        margin-bottom: 2rem;
-        padding: 0 0 0 1rem;
-        display: none;
-    }
-
-    .select {
-        background: $color-grey-dark-1;
-        padding: .75rem;
-        border: none;
-        border-radius: 5px;
-        color: $color-white;
-        margin-left: 1rem;
-        margin-bottom: 2rem;
-    }
-}
-
 .nav {
     height: 100%;
     min-width: 25rem;
@@ -45,14 +16,16 @@ main {
     }
 
     &__logo {
-        height: 4rem;
-        width: 4rem;
+        height: 3rem;
+        width: 3rem;
         flex-shrink: 0;
         margin-bottom: 1rem;
+        align-self: center;
     }
 
     &__heading {
         margin-bottom: 3rem;
+        text-align: center;
     }
 
     &__text {
@@ -130,6 +103,138 @@ main {
     }
 }
 
+main {
+    flex-grow: 1;
+    color: $color-white;
+    @include flex-col;
+    align-items: center;
+    padding: 5rem 5rem 1rem 5rem;
+    position: relative;
+
+    .heading {
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .label {
+        margin-bottom: 2rem;
+        padding: 0 0 0 1rem;
+        display: none;
+    }
+
+    .select {
+        background: $color-grey-dark-1;
+        padding: .75rem;
+        border: none;
+        border-radius: 5px;
+        color: $color-white;
+        margin-left: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .movie-info {
+        color: $color-white;
+        @include flex-col;
+        align-items: center;
+        position: absolute;
+        padding: 5rem;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-height: 100vh;
+        background-size: cover;
+        background-position: center;
+        display: none;
+
+        &__icon {
+            &--close {
+                margin-right: -2rem;
+                margin-top: -2rem;
+                height: 3rem;
+                width: 3rem;
+                align-self: flex-end;
+                cursor: pointer;
+            }
+
+            &--star, &--clock {
+                height: 1.5rem;
+                width: 1.5rem;
+                margin-right: .5rem;
+            }
+        }
+
+        &__details {
+            align-self: flex-start;
+            display: flex;
+            padding: 0 1rem;
+            margin-bottom: 5rem;
+        }
+
+        &__poster-container {
+            display: flex;
+            flex-direction: column;
+            margin: 0 3rem;
+        }
+
+        &__poster {
+            margin-bottom: 1rem;
+            width: 20rem;
+            height: 30rem;
+        }
+
+        &__year {
+            margin-bottom: 1rem;
+        }
+
+        &__genres {
+            margin-bottom: 1rem;
+        }
+
+        &__stats {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        &__stat-value {
+            margin-right: 1rem;
+        }
+
+        &__overview {
+            margin-bottom: 2rem;
+        }
+
+        &__btn {
+            background: $color-primary;
+            color: $color-white;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        &__btn--external {
+            background: transparent;
+            border: 1px solid white;
+            margin-right: 1rem;
+            padding: .75rem;
+        }
+
+        &__trailer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &__trailer-title {
+            margin-bottom: 1rem;
+        }
+
+        &__trailer-video {
+            background: black;
+        }
+    }
+}
+
 // .tmdb {
 //     &__link {
 //         height: 4rem;
@@ -144,11 +249,6 @@ main {
 
 .selected {
     background: $color-primary;
-}
-
-.filler {
-    width: 16rem;
-    margin: 1rem;
 }
 
 .expand {

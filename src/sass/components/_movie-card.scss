@@ -6,9 +6,10 @@
     border-radius: 1rem;
     overflow: hidden;
     position: relative;
+    cursor: pointer;
 
     &:hover {
-        transform: scale(1.05);
+        transform: scale(1.02);
     }
 
     &__container {
@@ -29,5 +30,10 @@
 
     &__title {
         max-width: 100%;
+    }
+
+    &__filler {
+        width: 16rem;
+        margin: 1rem;
     }
 }

@@ -3,18 +3,6 @@ body {
     font-size: $font-size-default;
 }
 
-main {
-    .heading {
-        font-family: 'Montserrat', sans-serif;
-        font-size: $font-size-xl;
-    }
-
-    .select {
-        font-family: 'Lato', sans-serif;
-        font-size: $font-size-default;
-    }
-}
-
 .nav {
     font-size: $font-size-sm;
 
@@ -32,7 +20,24 @@ main {
 
 .search {
     &__input {
-        font-size: $font-size-sm;        
+        font-size: $font-size-sm;
+    }
+}
+
+.tmdb__text {
+    font-family: 'Lato', 'sans-serif';
+    font-size: $font-size-xxs;
+}
+
+main {
+    .heading {
+        font-family: 'Montserrat', sans-serif;
+        font-size: $font-size-xl;
+    }
+
+    .select {
+        font-family: 'Lato', sans-serif;
+        font-size: $font-size-default;
     }
 }
 
@@ -40,7 +45,37 @@ main {
     font-size: $font-size-sm;
 }
 
-.tmdb__text {
-    font-family: 'Lato', 'sans-serif';
-    font-size: $font-size-xxs;
+.movie-info {
+    font-family: 'Montserrat', sans-serif;
+
+    &__title {
+        font-size: $font-size-xl;
+        font-weight: 600;
+    }
+
+    &__year {
+        font-size: $font-size-md;
+        font-weight: 600;
+    }
+
+    &__genres {
+        font-family: 'Lato', sans-serif;
+        font-size: $font-size-sm;
+    }
+
+    &__overview {
+        font-family: 'Lato', sans-serif;
+        font-size: $font-size-default;
+        line-height: 1.5;
+    }
+
+    &__btn {
+        font-family: 'Lato', sans-serif;
+        font-size: $font-size-sm;
+    }
+
+    &__trailer-title {
+        font-size: $font-size-lg;
+        font-weight: 600;
+    }
 }
