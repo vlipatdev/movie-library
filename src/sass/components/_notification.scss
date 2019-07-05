@@ -1,0 +1,14 @@
+.notification {
+    &__container {
+        position: fixed;
+        bottom: 5rem;
+        right: 0;
+        background: $color-grey-dark-1;
+        box-shadow: $box-shadow-xl;
+        padding: 2rem;
+        z-index: 1000;
+        border-left: 1rem solid $color-primary;
+        transform: translateX(110%);
+        max-width: 30rem;
+    }
+}

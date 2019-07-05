@@ -6,3 +6,13 @@
         transform: scale(1.0);
     }
 }
+
+@keyframes slide-left {
+    10%, 90% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(110%);
+    }
+}

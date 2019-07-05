@@ -16,18 +16,21 @@
     <script src="./bundle.js" defer></script>
 </head>
 <body>
+    <div class="notification__container"></div>
     <div class="nav__container">
         <nav class="nav">
-            <img class="nav__logo" src="img/film.svg">
+            <a href="#" class="nav__logo-wrapper">
+                <img class="nav__logo" src="img/undraw-video-streaming.svg">
+            </a>
             <p class="nav__heading">movie library</p>
             <div class="search">
                 <input type="text" class="search__input" placeholder="Search for a movie">
                 <img src="img/search.svg" alt="search logo" class="search__icon">
             </div>
-            <p class="nav__text nav__text--favorites">My Favorites <img class="nav__icon" src="img/heart.svg"></p>
-            <p class="nav__text nav__text--trending">Trending <img class="nav__icon" src="img/trending-up.svg"></p>
-            <p class="nav__text nav__text--genres">Genres <img class="nav__icon nav__icon--chevron" src="img/chevron-down.svg"></p>
-            <ul class="nav__list">
+            <p class="nav__text nav__text--favorites"><img class="nav__icon" src="img/heart.svg">My Favorites<span class="nav__text--favorites-count">0</span></p>
+            <p class="nav__text nav__text--trending"><img class="nav__icon" src="img/trending-up.svg">Trending</p>
+            <p class="nav__text nav__text--genres"><img class="nav__icon nav__icon--chevron" src="img/chevron-down.svg">Genres</p>
+            <ul class="nav__list nav__list--genre">
                 <li class="nav__list-item" data-id="28|12|16|35|80|99|18|10751|14|36|27|10402|9648|10749|878|10770|53|10752">All</li>
                 <li class="nav__list-item" data-id="28">Action</li>
                 <li class="nav__list-item" data-id="12">Adventure</li>
@@ -47,18 +50,20 @@
                 <li class="nav__list-item" data-id="10752">War</li>
                 <li class="nav__list-item" data-id="37">Western</li>
             </ul>
-            <p class="nav__text nav__text--about">About</p>
+            <p class="nav__text nav__text--about"><img class="nav__icon nav__icon--chevron" src="img/info.svg"> About</p>
+            <div class="tmdb">
+                <a class="tmdb__link" href="https://www.themoviedb.org/">
+                    <img class="tmdb__logo" src="img/tmdb-logo.svg" alt="tmdb-logo">
+                </a>
+                <p class="tmdb__text">This app uses the TMDb API but is not endorsed or certified by TMDb.</p>
+            </div>
             <a class="nav__link" href="https://github.com/vlipatdev">
                 <img class="nav__icon--github" src="img/github.svg">
             </a>
-            <!-- <a class="tmdb__link" href="https://www.themoviedb.org/">
-                <img class="tmdb__logo" src="img/tmdb-logo.svg" alt="tmdb-logo">
-            </a>
-            <p class="tmdb__text">This app uses the TMDb API but is not endorsed or certified by TMDb.</p> -->
         </nav>
     </div>
     <main>
-        <h2 class="heading">Trending</h2>
+        <h2 class="heading">Trending Movies</h2>
         <label class="label label__discover">Sort by
             <select class="select select__discover">
                 <option value="popularity.desc">Popularity</option>

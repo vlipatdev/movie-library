@@ -3,11 +3,17 @@ body {
     font-size: $font-size-default;
 }
 
+.notification {
+    &__container {
+        font-size: $font-size-sm;
+    }
+}
+
 .nav {
     font-size: $font-size-sm;
 
     &__heading {
-        font-size: $font-size-lg;
+        font-size: $font-size-md;
         font-family: 'Montserrat', sans-serif;
         line-height: 1;
     }
@@ -15,6 +21,12 @@ body {
     &__text {
         font-family: 'Montserrat', sans-serif;
         font-size: $font-size-xs;
+
+        &--favorites-count {
+            font-size: $font-size-xxs;
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+        }
     }
 }
 
@@ -32,7 +44,7 @@ body {
 main {
     .heading {
         font-family: 'Montserrat', sans-serif;
-        font-size: $font-size-xl;
+        font-size: $font-size-lg;
     }
 
     .select {
@@ -51,6 +63,7 @@ main {
     &__title {
         font-size: $font-size-xl;
         font-weight: 600;
+        line-height: 1;
     }
 
     &__year {

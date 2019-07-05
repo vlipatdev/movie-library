@@ -1,10 +1,11 @@
 // color
 $color-primary: #8E24AA;
+$color-primary-light: #AB47BC;
 
 $color-grey-dark-1: #212121;
-$color-grey-dark-2: #2F3136;
-$color-grey-dark-3: #616161;
-$color-grey-dark-4: #424242;
+$color-grey-dark-2: #282828;
+$color-grey-dark-3: #424242;
+$color-grey-dark-4: #616161;
 
 $color-white: #EEEEEE;
 
@@ -19,3 +20,6 @@ $font-size-xl: 4.8rem;
 
 // box-shadow
 $box-shadow-sm: 0 0 5px rgba(0, 0, 0, .2);
+$box-shadow-md: 0 0 10px rgba(0, 0, 0, .2);
+$box-shadow-lg: 0 0 15px rgba(0, 0, 0, .2);
+$box-shadow-xl: 0 0 25px rgba(0, 0, 0, .5);
