@@ -3,15 +3,27 @@
     min-width: 16rem;
     margin: 1rem 1rem 3rem 1rem;
     background: $color-grey-dark-2;
-    border-radius: 5px;
-    overflow: hidden;
     position: relative;
     cursor: pointer;
     box-shadow: $box-shadow-sm;
 
     &:hover {
-        transform: scale(1.05);
         box-shadow: $box-shadow-lg;
+    }
+
+    &__no-results {
+        @include flex-center-col;
+        margin-top: 3rem;
+        align-self: center;
+        justify-self: center;
+        width: 100%;
+        display: none;
+
+        &-illustration {
+            height: 20rem;
+            width: 20rem;
+            opacity: .9;
+        }
     }
 
     &__container {

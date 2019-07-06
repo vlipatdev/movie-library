@@ -1,8 +1,9 @@
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     watch: true,
-    entry: './src/js/index.js',
+    entry: ['babel-polyfill', './src/js/index.js'],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
@@ -26,15 +27,15 @@ module.exports = {
                         loader: MiniCssExtractPlugin.loader
                     },
                     {
-                        loader: "css-loader",
+                        loader: 'css-loader',
                     },
                     {
-                        loader: "postcss-loader"
+                        loader: 'postcss-loader'
                     },
                     {
-                        loader: "sass-loader",
+                        loader: 'sass-loader',
                         options: {
-                            implementation: require("sass")
+                            implementation: require('sass')
                         }
                     }
                 ]
@@ -43,7 +44,7 @@ module.exports = {
                 test: /\.(png|jpe?g|gif|svg)$/,
                 use: [
                     {
-                        loader: "file-loader",
+                        loader: 'file-loader',
                         options: {
                             outputPath: 'img'
                         }
@@ -54,10 +55,10 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "bundle.css"
+            filename: 'bundle.css'
         })
     ],
     devServer: {
-        contentBase: "./dist"
+        contentBase: './dist'
     },
 };
