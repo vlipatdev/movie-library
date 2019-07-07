@@ -3,20 +3,31 @@ body {
     font-size: $font-size-default;
 }
 
+.topbar {
+    &__heading {
+        font-family: 'Montserrat', sans-serif;
+        font-size: $font-size-md;
+        font-weight: 400;
+        line-height: 1;
+
+        @include respond(md) {
+            font-size: $font-size-default;
+        }
+    }
+}
+
 .notification {
     &__container {
         font-size: $font-size-sm;
+
+        @include respond(md) {
+            font-size: $font-size-xs;
+        }
     }
 }
 
 .nav {
     font-size: $font-size-sm;
-
-    &__heading {
-        font-family: 'Montserrat', sans-serif;
-        font-size: $font-size-md;
-        line-height: 1;
-    }
 
     &__tab {
         font-family: 'Montserrat', sans-serif;
@@ -33,6 +44,10 @@ body {
 .search {
     &__input {
         font-size: $font-size-sm;
+
+        @include respond(xs) {
+            font-size: $font-size-xs;
+        }
     }
 }
 
@@ -45,16 +60,34 @@ main {
     .heading {
         font-family: 'Montserrat', sans-serif;
         font-size: $font-size-lg;
+
+        @include respond(sm) {
+            font-size: $font-size-md;
+        }
+    }
+
+    .label {
+        @include respond(sm) {
+            font-size: $font-size-xs;
+        }
     }
 
     .select {
         font-family: 'Lato', sans-serif;
         font-size: $font-size-default;
+
+        @include respond(sm) {
+            font-size: $font-size-xs;
+        }
     }
 }
 
 .movie {
     font-size: $font-size-sm;
+
+    @include respond(sm) {
+        font-size: $font-size-xs;
+    }
 }
 
 .movie-info {
@@ -64,31 +97,69 @@ main {
         font-size: $font-size-xl;
         font-weight: 600;
         line-height: 1;
+
+        @include respond(lg) {
+            font-size: $font-size-lg;
+        }
+
+        @include respond(sm) {
+            font-size: $font-size-md;
+        }
     }
 
     &__year {
         font-size: $font-size-md;
         font-weight: 600;
+
+        @include respond(md) {
+            font-size: $font-size-sm;
+        }
     }
 
     &__genres {
         font-family: 'Lato', sans-serif;
         font-size: $font-size-sm;
+
+        @include respond(md) {
+            font-size: $font-size-xs;
+        }
+    }
+
+    &__stats {
+        @include respond(md) {
+            font-size: $font-size-sm;
+        }
     }
 
     &__overview {
         font-family: 'Lato', sans-serif;
         font-size: $font-size-default;
         line-height: 1.5;
+
+        @include respond(md) {
+            font-size: $font-size-sm;
+        }
     }
 
     &__btn {
         font-family: 'Lato', sans-serif;
         font-size: $font-size-sm;
+
+        @include respond(md) {
+            font-size: $font-size-xs;
+        }
     }
 
     &__trailer-title {
         font-size: $font-size-lg;
         font-weight: 600;
+
+        @include respond(lg) {
+            font-size: $font-size-md;
+        }
+
+        @include respond(md) {
+            font-size: $font-size-sm;
+        }
     }
 }

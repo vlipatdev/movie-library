@@ -16,88 +16,99 @@
     <script src="./bundle.js" defer></script>
 </head>
 <body>
-    <div class="notification__container"></div>
-    <div class="nav__container">
-        <nav class="nav">
-            <a href="#" class="nav__logo-wrapper">
-                <img class="nav__logo" src="img/undraw-video-streaming.svg" alt="logo">
+    <div class="topbar">
+        <button class="btn topbar__menu" aria-label="menu">
+            <div class="topbar__menu-bar"></div>
+            <div class="topbar__menu-bar"></div>
+            <div class="topbar__menu-bar"></div>
+        </button>
+        <div class="topbar__branding">
+            <a href="#" class="topbar__logo-wrapper">
+                <img class="topbar__logo" src="img/undraw-video-streaming.svg" alt="logo">
             </a>
-            <p class="nav__heading">movie library</p>
-            <div class="search">
-                <input type="text" class="search__input" placeholder="Search for a movie">
-                <img class="search__icon" src="img/search.svg" alt="search icon">
-            </div>
-            <p class="nav__tab nav__tab--favorites"><img class="nav__icon" src="img/heart.svg" alt="heart">My Favorites<span class="nav__tab--favorites-count">0</span></p>
-            <p class="nav__tab nav__tab--trending"><img class="nav__icon" src="img/trending-up.svg" alt="trending">Trending</p>
-            <p class="nav__tab nav__tab--genres"><img class="nav__icon nav__icon--chevron" src="img/chevron-down.svg" alt="">Genres</p>
-            <ul class="nav__list nav__list--genre">
-                <li class="nav__list-item" data-id="28|12|16|35|80|99|18|10751|14|36|27|10402|9648|10749|878|10770|53|10752">All</li>
-                <li class="nav__list-item" data-id="28">Action</li>
-                <li class="nav__list-item" data-id="12">Adventure</li>
-                <li class="nav__list-item" data-id="16">Animation</li>
-                <li class="nav__list-item" data-id="35">Comedy</li>
-                <li class="nav__list-item" data-id="80">Crime</li>
-                <li class="nav__list-item" data-id="18">Drama</li>
-                <li class="nav__list-item" data-id="10751">Family</li>
-                <li class="nav__list-item" data-id="36">History</li>
-                <li class="nav__list-item" data-id="14">Fantasy</li>
-                <li class="nav__list-item" data-id="27">Horror</li>
-                <li class="nav__list-item" data-id="10402">Music</li>
-                <li class="nav__list-item" data-id="9648">Mystery</li>
-                <li class="nav__list-item" data-id="10749">Romance</li>
-                <li class="nav__list-item" data-id="878">Science Fiction</li>
-                <li class="nav__list-item" data-id="53">Thriller</li>
-                <li class="nav__list-item" data-id="10752">War</li>
-                <li class="nav__list-item" data-id="37">Western</li>
-            </ul>
-            <p class="nav__tab nav__tab--about"><img class="nav__icon" src="img/info.svg" alt=""> About</p>
-            <div class="tmdb" style="display:none;">
-                <a class="tmdb__link" href="https://www.themoviedb.org/">
-                    <img class="tmdb__logo" src="img/tmdb-logo.svg" alt="tmdb logo">
-                </a>
-                <p class="tmdb__text">This app uses the TMDb API but is not endorsed or certified by TMDb.</p>
-            </div>
-            <a class="nav__link" href="https://github.com/vlipatdev">
-                <img class="nav__icon--github" src="img/github.svg" alt="github logo">
-            </a>
-        </nav>
+            <h1 class="topbar__heading">movie library</h1>
+        </div>
+        <div class="search">
+            <input type="text" class="search__input" aria-label="search" placeholder="Search">
+            <img class="search__icon" src="img/search.svg" alt="search icon">
+        </div>
     </div>
-    <main>
-        <h2 class="heading">Trending Movies</h2>
-        <label class="label label__discover">Sort by
-            <select class="select select__discover">
-                <option value="popularity.desc">Popularity</option>
-                <option value="release_date.desc">Year</option>
-                <option value="original_title.asc">Title</option>
-                <option value="vote_average.desc">Rating</option>
+    <div class="notification__container"></div>
+    <div class="main-container">
+        <div class="nav__container">
+            <nav class="nav">
+                <p class="nav__tab nav__tab--favorites"><img class="nav__icon" src="img/heart.svg" alt="heart">My Favorites<span class="nav__tab--favorites-count">0</span></p>
+                <p class="nav__tab nav__tab--trending"><img class="nav__icon" src="img/trending-up.svg" alt="trending">Trending</p>
+                <p class="nav__tab nav__tab--genres"><img class="nav__icon nav__icon--chevron" src="img/chevron-down.svg" alt="">Genres</p>
+                <ul class="nav__list">
+                    <li class="nav__list-item" data-id="28|12|16|35|80|99|18|10751|14|36|27|10402|9648|10749|878|10770|53|10752">All</li>
+                    <li class="nav__list-item" data-id="28">Action</li>
+                    <li class="nav__list-item" data-id="12">Adventure</li>
+                    <li class="nav__list-item" data-id="16">Animation</li>
+                    <li class="nav__list-item" data-id="35">Comedy</li>
+                    <li class="nav__list-item" data-id="80">Crime</li>
+                    <li class="nav__list-item" data-id="18">Drama</li>
+                    <li class="nav__list-item" data-id="10751">Family</li>
+                    <li class="nav__list-item" data-id="36">History</li>
+                    <li class="nav__list-item" data-id="14">Fantasy</li>
+                    <li class="nav__list-item" data-id="27">Horror</li>
+                    <li class="nav__list-item" data-id="10402">Music</li>
+                    <li class="nav__list-item" data-id="9648">Mystery</li>
+                    <li class="nav__list-item" data-id="10749">Romance</li>
+                    <li class="nav__list-item" data-id="878">Science Fiction</li>
+                    <li class="nav__list-item" data-id="53">Thriller</li>
+                    <li class="nav__list-item" data-id="10752">War</li>
+                    <li class="nav__list-item" data-id="37">Western</li>
+                </ul>
+                <p class="nav__tab nav__tab--about"><img class="nav__icon" src="img/info.svg" alt=""> About</p>
+                <div class="tmdb" style="display:none;">
+                    <a class="tmdb__link" href="https://www.themoviedb.org/">
+                        <img class="tmdb__logo" src="img/tmdb-logo.svg" alt="tmdb logo">
+                    </a>
+                    <p class="tmdb__text">This app uses the TMDb API but is not endorsed or certified by TMDb.</p>
+                </div>
+                <a class="nav__link" href="https://github.com/vlipatdev">
+                    <img class="nav__icon--github" src="img/github.svg" alt="github logo">
+                </a>
+            </nav>
+        </div>
+        <main>
+            <h2 class="heading">Trending Movies</h2>
+            <label class="label label__discover">Sort by
+                <select class="select select__discover">
+                    <option value="popularity.desc">Popularity</option>
+                    <option value="release_date.desc">Year</option>
+                    <option value="original_title.asc">Title</option>
+                    <option value="vote_average.desc">Rating</option>
+                </select>
+            </label>
+            <select class="select select__trend" aria-label="trending duration">
+                <option value="day">Day</option>
+                <option value="week">Week</option>
             </select>
-        </label>
-        <select class="select select__trend">
-            <option value="day">Day</option>
-            <option value="week">Week</option>
-        </select>
-        <div class="movie__container">
-            <div class="movie__no-results">
-                <img class="movie__no-results-illustration" src="img/undraw-no-data.svg" alt="no results illustration">
-                <p class="movie__no-results-text">No movies found.</p>
+            <div class="movie__container">
+                <div class="movie__no-results">
+                    <img class="movie__no-results-illustration" src="img/undraw-no-data.svg" alt="no results illustration">
+                    <p class="movie__no-results-text">No movies found.</p>
+                </div>
+                <i class="movie__filler movie__filler-anchor" aria-hidden="true"></i>
+                <i class="movie__filler" aria-hidden="true"></i>
+                <i class="movie__filler" aria-hidden="true"></i>
+                <i class="movie__filler" aria-hidden="true"></i>
+                <i class="movie__filler" aria-hidden="true"></i>
+                <i class="movie__filler" aria-hidden="true"></i>
+                <i class="movie__filler" aria-hidden="true"></i>
+                <i class="movie__filler" aria-hidden="true"></i>
+                <i class="movie__filler" aria-hidden="true"></i>
+                <i class="movie__filler" aria-hidden="true"></i>
             </div>
-            <i class="movie__filler movie__filler-anchor" aria-hidden="true"></i>
-            <i class="movie__filler" aria-hidden="true"></i>
-            <i class="movie__filler" aria-hidden="true"></i>
-            <i class="movie__filler" aria-hidden="true"></i>
-            <i class="movie__filler" aria-hidden="true"></i>
-            <i class="movie__filler" aria-hidden="true"></i>
-            <i class="movie__filler" aria-hidden="true"></i>
-            <i class="movie__filler" aria-hidden="true"></i>
-            <i class="movie__filler" aria-hidden="true"></i>
-            <i class="movie__filler" aria-hidden="true"></i>
-        </div>
-        <div class="loader">
-            <div class="loader__circle loader__circle--1"></div>
-            <div class="loader__circle loader__circle--2"></div>
-            <div class="loader__circle loader__circle--3"></div>
-        </div>
-        <div class="movie-info"></div>
-    </main>
+            <div class="loader">
+                <div class="loader__circle loader__circle--1"></div>
+                <div class="loader__circle loader__circle--2"></div>
+                <div class="loader__circle loader__circle--3"></div>
+            </div>
+            <div class="movie-info"></div>
+        </main>
+    </div>
 </body>
 </html>

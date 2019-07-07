@@ -10,5 +10,10 @@
         z-index: 1000;
         transform: translateX(110%);
         max-width: 30rem;
+
+        @include respond(md) {
+            padding: 1rem;
+            max-width: 20rem;
+        }
     }
 }

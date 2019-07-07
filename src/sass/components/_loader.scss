@@ -1,5 +1,8 @@
 .loader {
+    margin: -5rem auto 0 auto;
     width: 7rem;
+    align-self: center;
+    @include flex-center;
 
     &__circle {
         width: 1.2rem;

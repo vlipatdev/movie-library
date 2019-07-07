@@ -4,13 +4,15 @@ import { key } from './config';
 
 const elements = {
     illustration: document.querySelector('.movie__no-results'),
+    menu: document.querySelector('.topbar__menu'),
     searchInput: document.querySelector('.search__input'),
     searchIcon: document.querySelector('.search__icon'),
+    nav: document.querySelector('.nav'),
     favoritesTab: document.querySelector('.nav__tab--favorites'),
     trendingTab: document.querySelector('.nav__tab--trending'),
     genresTab: document.querySelector('.nav__tab--genres'),
     genreIcon: document.querySelector('.nav__icon--chevron'),
-    genreUl: document.querySelector('.nav__list--genre'),
+    genreUl: document.querySelector('.nav__list'),
     genreList: document.querySelectorAll('.nav__list-item'),
     about: document.querySelector('.nav__tab--about'),
     tmdb: document.querySelector('.tmdb'),
@@ -155,6 +157,11 @@ const loadNextPage = () => {
     getMovies(url);
 };
 
+// menu click listener
+elements.menu.addEventListener('click', () => {
+    elements.nav.classList.toggle('nav-active');
+});
+
 // search function
 const search = (e, isInput) => {
     clearDetails();
@@ -292,7 +299,7 @@ const getMovieDetails = (url) => {
     axios.get(url)
         .then((data) => {
             const movieData = data.data;
-            elements.movieInfo.style.backgroundImage = `linear-gradient(to top, rgba(0, 0, 0, .8), rgba(0, 0, 0, .7)), url('https://image.tmdb.org/t/p/w780/${movieData.backdrop_path}')`;
+            elements.movieInfo.style.backgroundImage = `linear-gradient(to top, rgba(0, 0, 0, .9), rgba(0, 0, 0, .8)), url('https://image.tmdb.org/t/p/w780/${movieData.backdrop_path}')`;
 
             // insert markup
             elements.movieInfo.insertAdjacentHTML('beforeend', `
@@ -427,7 +434,7 @@ const getMovieDetails = (url) => {
 const clearDetails = () => {
     elements.movieInfo.style.display = 'none';
     elements.movieInfo.innerHTML = '';
-    elements.movieInfo.style.backgroundImage = 'linear-gradient(to top, rgba(0, 0, 0, .8), rgba(0, 0, 0, .7))';
+    elements.movieInfo.style.backgroundImage = 'linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .8))';
     elements.heading.style.visibility = 'visible';
     elements.discoverLabel.style.visibility = 'visible';
     elements.trendingSelect.style.visibility = 'visible';
@@ -482,6 +489,8 @@ const getFavorites = () => {
 /* =================================== INITIALIZE ====================================== */
 
 const init = () => {
+    elements.genreUl.classList.toggle('expand');
+    elements.genreIcon.classList.toggle('rotate');
     prevSelected = elements.trendingTab;
     prevSelected.classList.add('selected');
     isTrending = true;
