@@ -8,13 +8,13 @@
     box-shadow: $box-shadow-sm;
 
     @include respond(lg) {
-        width: 14rem;
-        min-width: 14rem;
+        width: 12rem;
+        min-width: 12rem;
     }
 
     @include respond(sm) {
-        width: 12rem;
-        min-width: 12rem;
+        width: 14rem;
+        min-width: 14rem;
     }
 
     &:hover {
@@ -52,13 +52,13 @@
         width: 16rem;
 
         @include respond(lg) {
-            height: 21rem;
-            width: 14rem;
+            height: 18rem;
+            width: 12rem;
         }
 
         @include respond(sm) {
-            height: 18rem;
-            width: 12rem;
+            height: 21rem;
+            width: 14rem;
         }
     }
 
@@ -71,13 +71,13 @@
         margin: 0 .5rem 3rem .5rem;
 
         @include respond(lg) {
-            width: 14rem;
-            min-width: 14rem;
+            width: 12rem;
+            min-width: 12rem;
         }
 
         @include respond(sm) {
-            width: 12rem;
-            min-width: 12rem;
+            width: 14rem;
+            min-width: 14rem;
         }
     }
 }

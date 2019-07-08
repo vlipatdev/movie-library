@@ -3,7 +3,7 @@ body {
     font-size: $font-size-default;
 }
 
-.topbar {
+.top-bar {
     &__heading {
         font-family: 'Montserrat', sans-serif;
         font-size: $font-size-md;
@@ -38,6 +38,10 @@ body {
             font-weight: 600;
             font-variant-numeric: tabular-nums;
         }
+    }
+
+    &__copyright {
+        font-size: $font-size-xs;
     }
 }
 
@@ -159,7 +163,7 @@ main {
         }
 
         @include respond(md) {
-            font-size: $font-size-sm;
+            font-size: $font-size-default;
         }
     }
 }

@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143362264-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143362264-1');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -16,17 +25,17 @@
     <script src="./bundle.js" defer></script>
 </head>
 <body>
-    <div class="topbar">
-        <button class="btn topbar__menu" aria-label="menu">
-            <div class="topbar__menu-bar"></div>
-            <div class="topbar__menu-bar"></div>
-            <div class="topbar__menu-bar"></div>
+    <div class="top-bar">
+        <button class="btn top-bar__menu" aria-label="menu">
+            <div class="top-bar__menu-bar"></div>
+            <div class="top-bar__menu-bar"></div>
+            <div class="top-bar__menu-bar"></div>
         </button>
-        <div class="topbar__branding">
-            <a href="#" class="topbar__logo-wrapper">
-                <img class="topbar__logo" src="img/undraw-video-streaming.svg" alt="logo">
+        <div class="top-bar__branding">
+            <a href="#" class="top-bar__logo-wrapper">
+                <img class="top-bar__logo" src="img/undraw-video-streaming.svg" alt="logo">
             </a>
-            <h1 class="topbar__heading">movie library</h1>
+            <h1 class="top-bar__heading">movie library</h1>
         </div>
         <div class="search">
             <input type="text" class="search__input" aria-label="search" placeholder="Search">
@@ -67,9 +76,10 @@
                     </a>
                     <p class="tmdb__text">This app uses the TMDb API but is not endorsed or certified by TMDb.</p>
                 </div>
-                <a class="nav__link" href="https://github.com/vlipatdev">
+                <a class="nav__link" href="https://github.com/vlipatdev/movie-library">
                     <img class="nav__icon--github" src="img/github.svg" alt="github logo">
                 </a>
+                <p class="nav__copyright">Made by <a href="https://github.com/vlipatdev">Val Lipat</a></p>
             </nav>
         </div>
         <main>

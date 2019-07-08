@@ -4,7 +4,7 @@ import { key } from './config';
 
 const elements = {
     illustration: document.querySelector('.movie__no-results'),
-    menu: document.querySelector('.topbar__menu'),
+    menu: document.querySelector('.top-bar__menu'),
     searchInput: document.querySelector('.search__input'),
     searchIcon: document.querySelector('.search__icon'),
     nav: document.querySelector('.nav'),
@@ -45,6 +45,13 @@ let url;
 let prevSelected;
 
 /* =================================== FUNCTIONS ====================================== */
+
+const hideNav = () => {
+    if (isMenuActive) {
+        elements.nav.classList.remove('nav-active');
+        isMenuActive = false;
+    }
+};
 
 const hideIllustration = () => {
     elements.illustration.style.display = 'none';
@@ -158,8 +165,10 @@ const loadNextPage = () => {
 };
 
 // menu click listener
+let isMenuActive;
 elements.menu.addEventListener('click', () => {
     elements.nav.classList.toggle('nav-active');
+    isMenuActive = true;
 });
 
 // search function
@@ -179,7 +188,7 @@ const search = (e, isInput) => {
     getMovies(url);
 };
 
-// search tab keydown listener
+// search input 'enter' keydown listener
 let isInput;
 elements.searchInput.addEventListener('keydown', (e) => {
     if (e.keyCode === 13) {
@@ -196,6 +205,7 @@ elements.searchIcon.addEventListener('click', (e) => {
 
 // favorites tab click listener
 elements.favoritesTab.addEventListener('click', () => {
+    hideNav();
     getFavorites();
     prevSelected.classList.remove('selected');
     elements.favoritesTab.classList.add('selected');
@@ -204,6 +214,7 @@ elements.favoritesTab.addEventListener('click', () => {
 
 // trending tab click listener
 elements.trendingTab.addEventListener('click', () => {
+    hideNav();
     clearDetails();
     clearUI();
     elements.heading.textContent = 'Trending Movies';
@@ -237,6 +248,7 @@ elements.about.addEventListener('click', () => {
 // genres click listener
 elements.genreList.forEach((genre) => {
     genre.addEventListener('click', (e) => {
+        hideNav();
         clearDetails();
         clearUI();
         elements.heading.textContent = `${e.target.textContent} Movies`;
@@ -326,7 +338,9 @@ const getMovieDetails = (url) => {
             </div>
             <div class="movie-info__trailer">
                 <p class="movie-info__trailer-title">Trailer</p>
-                <iframe class="movie-info__trailer-video" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+                <div class="movie-info__trailer-video-container">
+                    <iframe class="movie-info__trailer-video" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+                </div>
             </div>
             `);
 
@@ -382,6 +396,12 @@ const getMovieDetails = (url) => {
                 }, 3000);
                 isFavorite = !isFavorite;
             });
+
+            // hide stats if null
+            const stats = document.querySelector('.movie-info__stats');
+            if (movieData.runtime === null) {
+                stats.style.display = 'none';
+            }
 
             // hide imdb button if null
             const imdbBtn = document.querySelector('.movie-info__btn--imdb');
