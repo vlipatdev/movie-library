@@ -24,7 +24,7 @@ const elements = {
     movieInfo: document.querySelector('.movie-info'),
     fillerAnchor: document.querySelector('.movie__filler-anchor'),
     loader: document.querySelector('.loader'),
-    notification: document.querySelector('.notification__container')
+    notification: document.querySelector('.notification__container'),
 };
 
 // track type of query
@@ -98,12 +98,19 @@ const clearUI = () => {
     resetPage();
 };
 
+const updateSelected = (e) => {
+    prevSelected.classList.remove('selected');
+    e.target.classList.add('selected');
+    prevSelected = e.target;
+};
+
 /* =================================== DISPLAY MOVIE CARDS ====================================== */
 
 // get movies function
 let Y;
 const getMovies = (url) => {
-    axios.get(url)
+    axios
+        .get(url)
         .then((data) => {
             const { results } = data.data;
 
@@ -141,12 +148,14 @@ const getMovies = (url) => {
                     elements.trendingSelect.style.visibility = 'hidden';
                     hideLoader();
                     showMovieInfo();
-                    getMovieDetails(`https://api.themoviedb.org/3/movie/${movieEl.dataset.movieid}?api_key=${key}&append_to_response=videos`);
+                    getMovieDetails(
+                        `https://api.themoviedb.org/3/movie/${movieEl.dataset.movieid}?api_key=${key}&append_to_response=videos`,
+                    );
                     return Y;
                 });
             });
         })
-        .catch(error => alert(error));
+        .catch(() => alert('Something went wrong. :('));
 };
 
 // load new page when user scrolls to bottom
@@ -154,12 +163,12 @@ const loadNextPage = () => {
     curPage += 1;
     if (isSearch) {
         url = `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchValue}&vote_count.gte=1000&page=${curPage}`;
-    } else if (isDiscover) {
-        url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&with_genres=${genreId}&sort_by=${discoverValue}&vote_count.gte=1000&page=${curPage}`;
-    } else if (isTrending) {
-        url = `https://api.themoviedb.org/3/trending/movie/${trendValue}?api_key=${key}&page=${curPage}`;
     } else if (isFavorites) {
         return;
+    } else if (isTrending) {
+        url = `https://api.themoviedb.org/3/trending/movie/${trendValue}?api_key=${key}&page=${curPage}`;
+    } else if (isDiscover) {
+        url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&with_genres=${genreId}&sort_by=${discoverValue}&vote_count.gte=1000&page=${curPage}`;
     }
     getMovies(url);
 };
@@ -173,19 +182,26 @@ elements.menu.addEventListener('click', () => {
 
 // search function
 const search = (e, isInput) => {
-    clearDetails();
-    clearUI();
-    prevSelected.classList.remove('selected');
-    isSearch = true;
     if (isInput) {
-        elements.heading.textContent = `Search results for "${e.target.value}"`;
         searchValue = e.target.value;
+        if (searchValue) {
+            elements.heading.textContent = `Search results for "${e.target.value}"`;
+        }
     } else {
-        elements.heading.textContent = `Search results for "${e.target.previousElementSibling.value}"`;
         searchValue = e.target.previousElementSibling.value;
+        if (searchValue) {
+            elements.heading.textContent = `Search results for "${e.target.previousElementSibling.value}"`;
+        }
     }
-    url = `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchValue}&vote_count.gte=1000&page=${curPage}`;
-    getMovies(url);
+
+    if (searchValue) {
+        clearDetails();
+        clearUI();
+        prevSelected.classList.remove('selected');
+        isSearch = true;
+        url = `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchValue}&vote_count.gte=1000&page=${curPage}`;
+        getMovies(url);
+    }
 };
 
 // search input 'enter' keydown listener
@@ -199,34 +215,31 @@ elements.searchInput.addEventListener('keydown', (e) => {
 
 // search icon click listener
 elements.searchIcon.addEventListener('click', (e) => {
+    e.stopImmediatePropagation();
     isInput = false;
     search(e, isInput);
 });
 
 // favorites tab click listener
-elements.favoritesTab.addEventListener('click', () => {
+elements.favoritesTab.addEventListener('click', (e) => {
     hideNav();
     getFavorites();
-    prevSelected.classList.remove('selected');
-    elements.favoritesTab.classList.add('selected');
-    prevSelected = elements.favoritesTab;
+    updateSelected(e);
 });
 
 // trending tab click listener
-elements.trendingTab.addEventListener('click', () => {
+elements.trendingTab.addEventListener('click', (e) => {
     hideNav();
     clearDetails();
     clearUI();
+    updateSelected(e);
     elements.heading.textContent = 'Trending Movies';
     elements.trendingSelect.style.display = 'block';
-    prevSelected.classList.remove('selected');
-    elements.trendingTab.classList.add('selected');
     isTrending = true;
     elements.trendingSelect.value = 'day';
     trendValue = 'day';
     url = `https://api.themoviedb.org/3/trending/movie/${trendValue}?api_key=${key}&page=${curPage}`;
     getMovies(url);
-    prevSelected = elements.trendingTab;
     return trendValue;
 });
 
@@ -251,17 +264,15 @@ elements.genreList.forEach((genre) => {
         hideNav();
         clearDetails();
         clearUI();
+        updateSelected(e);
         elements.heading.textContent = `${e.target.textContent} Movies`;
         elements.discoverLabel.style.display = 'block';
-        prevSelected.classList.remove('selected');
-        e.target.classList.add('selected');
         isDiscover = true;
         elements.discoverSelect.value = 'popularity.desc';
         discoverValue = 'popularity.desc';
         genreId = e.target.dataset.id;
         url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&with_genres=${genreId}&sort_by=${discoverValue}&vote_count.gte=1000&page=${curPage}`;
         getMovies(url);
-        prevSelected = e.target;
         return prevSelected;
     });
 });
@@ -300,7 +311,7 @@ if (localStorage.favorites) {
 
 // display favorites count onload
 const favoritesCount = document.querySelector('.nav__tab--favorites-count');
-favoritesCount.textContent = (favoritesArr.length);
+favoritesCount.textContent = favoritesArr.length;
 favoritesCount.style.display = 'inline';
 if (favoritesArr.length === 0) {
     favoritesCount.style.display = 'none';
@@ -308,7 +319,8 @@ if (favoritesArr.length === 0) {
 
 // get movie details
 const getMovieDetails = (url) => {
-    axios.get(url)
+    axios
+        .get(url)
         .then((data) => {
             const movieData = data.data;
             elements.movieInfo.style.backgroundImage = `linear-gradient(to top, rgba(0, 0, 0, .9), rgba(0, 0, 0, .8)), url('https://image.tmdb.org/t/p/w780/${movieData.backdrop_path}')`;
@@ -359,29 +371,28 @@ const getMovieDetails = (url) => {
             }
 
             favoriteBtn.addEventListener('click', (e) => {
-                const title = e.target.parentNode.nextElementSibling.children[0].textContent;
                 if (!isFavorite) {
                     favoriteBtn.style.background = '#d32f2f';
                     favoriteBtn.textContent = 'Remove from Favorites';
-                    elements.notification.textContent = `"${title}" added to Favorites.`;
+                    elements.notification.textContent = `"${movieData.title}" added to Favorites.`;
                 } else {
                     favoriteBtn.style.background = '#1565C0';
                     favoriteBtn.textContent = 'Add to Favorites';
-                    elements.notification.textContent = `"${title}" removed from Favorites.`;
+                    elements.notification.textContent = `"${movieData.title}" removed from Favorites.`;
                 }
 
                 if (favoritesArr.includes(e.target.dataset.movieid)) {
                     const idx = favoritesArr.findIndex(el => el === e.target.dataset.movieid);
                     favoritesArr.splice(idx, 1);
                     localStorage.favorites = favoritesArr.join(', ');
-                    favoritesCount.textContent = (favoritesArr.length);
+                    favoritesCount.textContent = favoritesArr.length;
                     if (favoritesArr.length === 0) {
                         favoritesCount.style.display = 'none';
                     }
                 } else {
                     favoritesArr.push(e.target.dataset.movieid);
                     localStorage.favorites = favoritesArr.join(', ');
-                    favoritesCount.textContent = (favoritesArr.length);
+                    favoritesCount.textContent = favoritesArr.length;
                     favoritesCount.style.display = 'inline';
                 }
 
@@ -389,6 +400,8 @@ const getMovieDetails = (url) => {
                 favoriteBtn.disabled = true;
                 favoriteBtn.style.cursor = 'not-allowed';
                 elements.notification.style.animation = 'slide-left 3s ease-in';
+
+                // re-enable favorite button
                 setTimeout(() => {
                     favoriteBtn.disabled = false;
                     favoriteBtn.style.cursor = 'pointer';
@@ -426,7 +439,9 @@ const getMovieDetails = (url) => {
             // show or hide trailer
             const movieTrailerContainer = document.querySelector('.movie-info__trailer');
             const movieTrailerVideo = document.querySelector('.movie-info__trailer-video');
-            const trailerArr = movieData.videos.results.filter(video => (video.site === 'YouTube' && video.type === 'Trailer'));
+            const trailerArr = movieData.videos.results.filter(
+                video => video.site === 'YouTube' && video.type === 'Trailer',
+            );
 
             if (trailerArr.length === 0) {
                 movieTrailerContainer.style.display = 'none';
@@ -447,7 +462,7 @@ const getMovieDetails = (url) => {
                 }
             });
         })
-        .catch(error => alert(error));
+        .catch(() => alert('Something went wrong. :('));
 };
 
 // clear movie details function
@@ -471,10 +486,12 @@ const getFavorites = () => {
     elements.heading.textContent = 'My Favorites';
     if (favoritesArr.length === 0) {
         showIllustration();
+        hideLoader();
     }
 
-    favoritesArr.forEach(async (movieId) => {
-        await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}`)
+    favoritesArr.forEach(async (movieId, idx) => {
+        await axios
+            .get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}`)
             .then((data) => {
                 const movieData = data.data;
                 elements.fillerAnchor.insertAdjacentHTML('beforebegin', `
@@ -498,12 +515,16 @@ const getFavorites = () => {
                 elements.trendingSelect.style.visibility = 'hidden';
                 hideLoader();
                 showMovieInfo();
-                getMovieDetails(`https://api.themoviedb.org/3/movie/${movie.dataset.movieid}?api_key=${key}&append_to_response=videos`);
+                getMovieDetails(
+                    `https://api.themoviedb.org/3/movie/${movie.dataset.movieid}?api_key=${key}&append_to_response=videos`,
+                );
                 return Y;
             });
         });
+        if (idx === favoritesArr.length - 1) {
+            hideLoader();
+        }
     });
-    hideLoader();
 };
 
 /* =================================== INITIALIZE ====================================== */
@@ -515,7 +536,6 @@ const init = () => {
     prevSelected.classList.add('selected');
     isTrending = true;
     trendValue = 'day';
-    discoverValue = 'popularity.desc';
     curPage = 1;
     url = `https://api.themoviedb.org/3/trending/movie/${trendValue}?api_key=${key}&page=${curPage}`;
     getMovies(url);

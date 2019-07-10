@@ -11,6 +11,7 @@
 
     &__menu {
         background: transparent;
+        margin-left: 1rem;
         padding: 1rem;
         display: none;
 
@@ -75,7 +76,6 @@
         color: $color-white;
         padding: 1rem 4rem 1rem 1rem;
         box-shadow: 0 1px 0 rgba(255, 255, 255, .1), inset 0 1px 1px rgba(0, 0, 0, .1);
-        transform-origin: start;
     }
 
     &__icon {
@@ -199,6 +199,10 @@
     &__copyright {
         text-align: center;
         opacity: .8;
+
+        @media only screen and (max-height: 400px) {
+            display: none;
+        }
     }
 }
 
