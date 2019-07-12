@@ -249,15 +249,6 @@ elements.genresTab.addEventListener('click', () => {
     elements.genreIcon.classList.toggle('rotate');
 });
 
-// about tab click listener
-elements.about.addEventListener('click', () => {
-    if (elements.tmdb.style.display !== 'none') {
-        elements.tmdb.style.display = 'none';
-    } else {
-        elements.tmdb.style.display = 'block';
-    }
-});
-
 // genres click listener
 elements.genreList.forEach((genre) => {
     genre.addEventListener('click', (e) => {
@@ -275,6 +266,15 @@ elements.genreList.forEach((genre) => {
         getMovies(url);
         return prevSelected;
     });
+});
+
+// about tab click listener
+elements.about.addEventListener('click', () => {
+    if (elements.tmdb.style.display !== 'none') {
+        elements.tmdb.style.display = 'none';
+    } else {
+        elements.tmdb.style.display = 'block';
+    }
 });
 
 // update trending on select change
@@ -301,7 +301,7 @@ elements.discoverSelect.addEventListener('change', (e) => {
 
 /* =================================== DISPLAY MOVIE DETAILS ====================================== */
 
-// local storage
+// get favorites from local storage
 let favoritesArr;
 if (localStorage.favorites) {
     favoritesArr = localStorage.favorites.split(', ');
@@ -312,9 +312,8 @@ if (localStorage.favorites) {
 // display favorites count onload
 const favoritesCount = document.querySelector('.nav__tab--favorites-count');
 favoritesCount.textContent = favoritesArr.length;
-favoritesCount.style.display = 'inline';
-if (favoritesArr.length === 0) {
-    favoritesCount.style.display = 'none';
+if (favoritesArr.length !== 0) {
+    favoritesCount.style.display = 'inline';
 }
 
 // get movie details
@@ -375,25 +374,26 @@ const getMovieDetails = (url) => {
                     favoriteBtn.style.background = '#d32f2f';
                     favoriteBtn.textContent = 'Remove from Favorites';
                     elements.notification.textContent = `"${movieData.title}" added to Favorites.`;
+                    favoritesArr.push(e.target.dataset.movieid);
+                    favoritesCount.textContent = favoritesArr.length;
+                    favoritesCount.style.display = 'inline';
+
+                    // update local storage
+                    localStorage.favorites = favoritesArr.join(', ');
                 } else {
                     favoriteBtn.style.background = '#1565C0';
                     favoriteBtn.textContent = 'Add to Favorites';
                     elements.notification.textContent = `"${movieData.title}" removed from Favorites.`;
-                }
-
-                if (favoritesArr.includes(e.target.dataset.movieid)) {
-                    const idx = favoritesArr.findIndex(el => el === e.target.dataset.movieid);
-                    favoritesArr.splice(idx, 1);
-                    localStorage.favorites = favoritesArr.join(', ');
                     favoritesCount.textContent = favoritesArr.length;
                     if (favoritesArr.length === 0) {
                         favoritesCount.style.display = 'none';
                     }
-                } else {
-                    favoritesArr.push(e.target.dataset.movieid);
+
+                    const idx = favoritesArr.findIndex(el => el === e.target.dataset.movieid);
+                    favoritesArr.splice(idx, 1);
+
+                    // update local storage
                     localStorage.favorites = favoritesArr.join(', ');
-                    favoritesCount.textContent = favoritesArr.length;
-                    favoritesCount.style.display = 'inline';
                 }
 
                 // temporarily disable favorite button

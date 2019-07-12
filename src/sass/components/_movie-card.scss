@@ -38,6 +38,7 @@
     &__container {
         margin-top: 2rem;
         display: flex;
+        justify-content: space-around; // for UC Browser
         justify-content: space-evenly;
         flex-wrap: wrap;
     }
