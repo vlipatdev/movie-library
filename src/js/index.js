@@ -21,7 +21,7 @@ const elements = {
     discoverLabel: document.querySelector('.label__discover'),
     discoverSelect: document.querySelector('.select__discover'),
     movieContainer: document.querySelector('.movie__container'),
-    movieInfo: document.querySelector('.movie-info'),
+    movieDetails: document.querySelector('.movie-info'),
     fillerAnchor: document.querySelector('.movie__filler-anchor'),
     loader: document.querySelector('.loader'),
     notification: document.querySelector('.notification__container'),
@@ -73,19 +73,7 @@ const clearMovies = () => {
     });
 };
 
-const hideLoader = () => {
-    elements.loader.style.display = 'none';
-};
-
-const showLoader = () => {
-    elements.loader.style.display = 'block';
-};
-
-const showMovieInfo = () => {
-    elements.movieInfo.style.display = 'flex';
-};
-
-const clearUI = () => {
+const clearMovieContainer = () => {
     hideIllustration();
     clearMovies();
     showLoader();
@@ -98,10 +86,31 @@ const clearUI = () => {
     resetPage();
 };
 
+const hideLoader = () => {
+    elements.loader.style.display = 'none';
+};
+
+const showLoader = () => {
+    elements.loader.style.display = 'block';
+};
+
+const showMovieDetails = () => {
+    elements.movieDetails.style.display = 'flex';
+};
+
+const clearUI = () => {
+    clearMovieDetails();
+    clearMovieContainer();
+};
+
 const updateSelected = (e) => {
     prevSelected.classList.remove('selected');
     e.target.classList.add('selected');
     prevSelected = e.target;
+};
+
+const updateLocalStorage = () => {
+    localStorage.favorites = favoritesArr.join(', ');
 };
 
 /* =================================== DISPLAY MOVIE CARDS ====================================== */
@@ -147,7 +156,7 @@ const getMovies = (url) => {
                     elements.discoverLabel.style.visibility = 'hidden';
                     elements.trendingSelect.style.visibility = 'hidden';
                     hideLoader();
-                    showMovieInfo();
+                    showMovieDetails();
                     getMovieDetails(
                         `https://api.themoviedb.org/3/movie/${movieEl.dataset.movieid}?api_key=${key}&append_to_response=videos`,
                     );
@@ -155,7 +164,7 @@ const getMovies = (url) => {
                 });
             });
         })
-        .catch(() => alert('Something went wrong. :('));
+        .catch(error => console.log(error));
 };
 
 // load new page when user scrolls to bottom
@@ -195,7 +204,6 @@ const search = (e, isInput) => {
     }
 
     if (searchValue) {
-        clearDetails();
         clearUI();
         prevSelected.classList.remove('selected');
         isSearch = true;
@@ -230,7 +238,6 @@ elements.favoritesTab.addEventListener('click', (e) => {
 // trending tab click listener
 elements.trendingTab.addEventListener('click', (e) => {
     hideNav();
-    clearDetails();
     clearUI();
     updateSelected(e);
     elements.heading.textContent = 'Trending Movies';
@@ -253,7 +260,6 @@ elements.genresTab.addEventListener('click', () => {
 elements.genreList.forEach((genre) => {
     genre.addEventListener('click', (e) => {
         hideNav();
-        clearDetails();
         clearUI();
         updateSelected(e);
         elements.heading.textContent = `${e.target.textContent} Movies`;
@@ -279,7 +285,7 @@ elements.about.addEventListener('click', () => {
 
 // update trending on select change
 elements.trendingSelect.addEventListener('change', (e) => {
-    clearUI();
+    clearMovieContainer();
     elements.trendingSelect.style.display = 'block';
     isTrending = true;
     trendValue = e.target.value;
@@ -290,7 +296,7 @@ elements.trendingSelect.addEventListener('change', (e) => {
 
 // update discover on select change;
 elements.discoverSelect.addEventListener('change', (e) => {
-    clearUI();
+    clearMovieContainer();
     elements.discoverLabel.style.display = 'block';
     isDiscover = true;
     discoverValue = e.target.value;
@@ -322,10 +328,10 @@ const getMovieDetails = (url) => {
         .get(url)
         .then((data) => {
             const movieData = data.data;
-            elements.movieInfo.style.backgroundImage = `linear-gradient(to top, rgba(0, 0, 0, .9), rgba(0, 0, 0, .8)), url('https://image.tmdb.org/t/p/w780/${movieData.backdrop_path}')`;
+            elements.movieDetails.style.backgroundImage = `linear-gradient(to top, rgba(0, 0, 0, .9), rgba(0, 0, 0, .8)), url('https://image.tmdb.org/t/p/w780/${movieData.backdrop_path}')`;
 
             // insert markup
-            elements.movieInfo.insertAdjacentHTML('beforeend', `
+            elements.movieDetails.insertAdjacentHTML('beforeend', `
             <img class="movie-info__icon--close" src="img/x.svg" alt="">
             <div class="movie-info__details">
                 <div class="movie-info__poster-container">
@@ -374,26 +380,26 @@ const getMovieDetails = (url) => {
                     favoriteBtn.style.background = '#d32f2f';
                     favoriteBtn.textContent = 'Remove from Favorites';
                     elements.notification.textContent = `"${movieData.title}" added to Favorites.`;
+
                     favoritesArr.push(e.target.dataset.movieid);
                     favoritesCount.textContent = favoritesArr.length;
                     favoritesCount.style.display = 'inline';
 
-                    // update local storage
-                    localStorage.favorites = favoritesArr.join(', ');
+                    updateLocalStorage();
                 } else {
                     favoriteBtn.style.background = '#1565C0';
                     favoriteBtn.textContent = 'Add to Favorites';
                     elements.notification.textContent = `"${movieData.title}" removed from Favorites.`;
+
+                    const idx = favoritesArr.findIndex(el => el === e.target.dataset.movieid);
+                    favoritesArr.splice(idx, 1);
+
                     favoritesCount.textContent = favoritesArr.length;
                     if (favoritesArr.length === 0) {
                         favoritesCount.style.display = 'none';
                     }
 
-                    const idx = favoritesArr.findIndex(el => el === e.target.dataset.movieid);
-                    favoritesArr.splice(idx, 1);
-
-                    // update local storage
-                    localStorage.favorites = favoritesArr.join(', ');
+                    updateLocalStorage();
                 }
 
                 // temporarily disable favorite button
@@ -407,6 +413,7 @@ const getMovieDetails = (url) => {
                     favoriteBtn.style.cursor = 'pointer';
                     elements.notification.style.animation = 'none';
                 }, 3000);
+
                 isFavorite = !isFavorite;
             });
 
@@ -429,12 +436,12 @@ const getMovieDetails = (url) => {
             }
 
             // format genres
-            const movieInfoGenres = document.querySelector('.movie-info__genres');
+            const movieDetailsGenres = document.querySelector('.movie-info__genres');
             const genresArr = [];
             movieData.genres.forEach((genre) => {
                 genresArr.push(genre.name);
             });
-            movieInfoGenres.textContent = genresArr.join(', ');
+            movieDetailsGenres.textContent = genresArr.join(', ');
 
             // show or hide trailer
             const movieTrailerContainer = document.querySelector('.movie-info__trailer');
@@ -453,7 +460,7 @@ const getMovieDetails = (url) => {
             // add click listener to 'close' button
             const closeBtn = document.querySelector('.movie-info__icon--close');
             closeBtn.addEventListener('click', () => {
-                clearDetails();
+                clearMovieDetails();
                 // restore scroll
                 window.scrollTo(0, Y);
 
@@ -462,14 +469,14 @@ const getMovieDetails = (url) => {
                 }
             });
         })
-        .catch(() => alert('Something went wrong. :('));
+        .catch(error => console.log(error));
 };
 
 // clear movie details function
-const clearDetails = () => {
-    elements.movieInfo.style.display = 'none';
-    elements.movieInfo.innerHTML = '';
-    elements.movieInfo.style.backgroundImage = 'linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .8))';
+const clearMovieDetails = () => {
+    elements.movieDetails.style.display = 'none';
+    elements.movieDetails.innerHTML = '';
+    elements.movieDetails.style.backgroundImage = 'linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .8))';
     elements.heading.style.visibility = 'visible';
     elements.discoverLabel.style.visibility = 'visible';
     elements.trendingSelect.style.visibility = 'visible';
@@ -480,7 +487,6 @@ const clearDetails = () => {
 /* =================================== DISPLAY FAVORITES ====================================== */
 
 const getFavorites = () => {
-    clearDetails();
     clearUI();
     isFavorites = true;
     elements.heading.textContent = 'My Favorites';
@@ -514,7 +520,7 @@ const getFavorites = () => {
                 elements.discoverLabel.style.visibility = 'hidden';
                 elements.trendingSelect.style.visibility = 'hidden';
                 hideLoader();
-                showMovieInfo();
+                showMovieDetails();
                 getMovieDetails(
                     `https://api.themoviedb.org/3/movie/${movie.dataset.movieid}?api_key=${key}&append_to_response=videos`,
                 );
